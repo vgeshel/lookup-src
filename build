@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+docker run -it --rm -v $(pwd):/work -w /work golang \
+       sh -c "CGO_ENABLED=0 go build -a -installsuffix cgo -ldflags '-s' lookup-srv.go"
+
+docker build -t vgeshel/lookup-srv .
